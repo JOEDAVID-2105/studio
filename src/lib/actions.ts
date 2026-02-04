@@ -16,7 +16,7 @@ const actionSchema = z.object({
 });
 
 export type TailorContentState = {
-  data: TailorContentToRecruiterOutput | null;
+  data: { response: string } | null;
   error: string | null;
   message: string;
 };

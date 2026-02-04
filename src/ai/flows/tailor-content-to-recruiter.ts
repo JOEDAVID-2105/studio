@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview A Genkit flow that tailors content to a recruiter's profile.
+ * @fileOverview A Genkit flow that acts as an intelligent guide for a portfolio.
  *
  * - tailorContentToRecruiter - A function that tailors content based on recruiter profile.
  * - TailorContentToRecruiterInput - The input type for the tailorContentToRecruiter function.
@@ -26,12 +26,11 @@ export type TailorContentToRecruiterInput = z.infer<
 >;
 
 const TailorContentToRecruiterOutputSchema = z.object({
-  tailoredSkills: z.array(z.string()).describe('The tailored skills.'),
-  tailoredExperiences:
-    z.array(z.string()).describe('The tailored experiences.'),
-  reasoning: z
+  response: z
     .string()
-    .describe('The reasoning behind the content tailoring decisions.'),
+    .describe(
+      "A conversational response explaining why Joel is a good fit, ending with a call to action to contact him."
+    ),
 });
 
 export type TailorContentToRecruiterOutput = z.infer<
@@ -48,22 +47,14 @@ const prompt = ai.definePrompt({
   name: 'tailorContentToRecruiterPrompt',
   input: {schema: TailorContentToRecruiterInputSchema},
   output: {schema: TailorContentToRecruiterOutputSchema},
-  prompt: `You are an AI assistant specializing in tailoring content for a professional portfolio.
+  prompt: `You are an intelligent guide for Joel David's portfolio. Your name is D'code. A visitor, likely a recruiter, will provide you with a job description or their professional interests. Your task is to analyze their input and explain in a conversational and professional manner how Joel's skills and experience make him a perfect fit for the role. Always be positive and encouraging. Conclude your response by strongly recommending that the visitor contacts Joel directly to discuss the opportunity.
 
-  Based on the recruiter's profile, identify the skills and experiences from the CMS data that are most relevant to the recruiter's interests and the roles they are hiring for.
+Use the provided CMS data for context on Joel's skills and experiences.
 
-  Recruiter Profile: {{{recruiterProfile}}}
-  Available Skills: {{{skills}}}
-  Available Experiences: {{{experiences}}}
-  CMS Data: {{{cmsData}}}
+Recruiter Profile: {{{recruiterProfile}}}
+CMS Data: {{{cmsData}}}
 
-  Consider the recruiter's role, industry, and any specific keywords or interests mentioned in their profile.
-
-  Highlight the skills and experiences that align with the recruiter's needs and demonstrate the candidate's suitability for potential job opportunities.
-
-  Provide a concise summary of your reasoning for selecting the tailored skills and experiences.
-
-  Output the tailored skills and experiences as arrays of strings and explain the reasoning in the reasoning field.
+Generate a conversational response based on these instructions.
   `,
 });
 
