@@ -18,10 +18,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Loader2 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
+  subject: z.string().min(5, { message: 'Subject must be at least 5 characters.' }),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
 
@@ -29,26 +31,44 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export function ContactModal({ children, onOpenChange }: { children: React.ReactNode, onOpenChange?: (open: boolean) => void }) {
   const [open, setOpen] = useState(false);
+  const { toast } = useToast();
   
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: '',
       email: '',
+      subject: '',
       message: '',
     },
   });
 
-  const onSubmit = (data: ContactFormValues) => {
-    const mailtoLink = `mailto:joelsofflmail@gmail.com?subject=Contact from ${encodeURIComponent(
-      data.name
-    )}&body=${encodeURIComponent(data.message)}%0A%0AFrom:%0A${encodeURIComponent(
-      data.name
-    )}%0A${encodeURIComponent(data.email)}`;
-    
-    window.location.href = mailtoLink;
-    setOpen(false);
-    form.reset();
+  const onSubmit = async (data: ContactFormValues) => {
+    try {
+      const emailJsWindow = window as any;
+      if (emailJsWindow.emailjs) {
+        await emailJsWindow.emailjs.send(
+          'service_x0x57ns',
+          'template_wbkl3rk',
+          data,
+        );
+        toast({
+          title: 'Email Sent!',
+          description: 'Thank you for your message. I will get back to you shortly.',
+        });
+        setOpen(false);
+        form.reset();
+      } else {
+        throw new Error('EmailJS is not loaded.');
+      }
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "Could not send the email. Please try again.",
+      });
+    }
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -65,7 +85,7 @@ export function ContactModal({ children, onOpenChange }: { children: React.React
         <DialogHeader>
           <DialogTitle>Contact Me</DialogTitle>
           <DialogDescription>
-            Fill out the form below. This will open your default email client.
+            Have a question or want to work together? Fill out the form below.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 py-4">
@@ -84,6 +104,13 @@ export function ContactModal({ children, onOpenChange }: { children: React.React
             )}
           </div>
           <div className="grid gap-2">
+            <Label htmlFor="subject" className="text-card-foreground">Subject</Label>
+            <Input id="subject" {...form.register('subject')} className="bg-background" />
+            {form.formState.errors.subject && (
+              <p className="text-sm text-destructive">{form.formState.errors.subject.message}</p>
+            )}
+          </div>
+          <div className="grid gap-2">
             <Label htmlFor="message" className="text-card-foreground">Message</Label>
             <Textarea id="message" {...form.register('message')} className="bg-background" />
             {form.formState.errors.message && (
@@ -97,7 +124,7 @@ export function ContactModal({ children, onOpenChange }: { children: React.React
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
                 </>
               ) : (
-                'Send via Email Client'
+                'Send Message'
               )}
             </Button>
           </DialogFooter>
