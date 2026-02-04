@@ -1,13 +1,13 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { tailorContentAction, type TailorContentState } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { AlertCircle, BrainCircuit, Loader2 } from 'lucide-react';
-import { useEffect } from 'react';
+import { BrainCircuit, Loader2 } from 'lucide-react';
+import { useEffect, useActionState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 function SubmitButton() {
@@ -27,7 +27,7 @@ function SubmitButton() {
 
 const Dcodes = () => {
   const initialState: TailorContentState = { data: null, error: null, message: '' };
-  const [state, formAction] = useFormState(tailorContentAction, initialState);
+  const [state, formAction] = useActionState(tailorContentAction, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
