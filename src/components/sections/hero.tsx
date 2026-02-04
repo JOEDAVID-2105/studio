@@ -7,9 +7,13 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
+  const [isFaded, setIsFaded] = useState(false);
+  const fadeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const endFrameUrl =
-    'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/frame_190_delay-0.042s.webp';
+  const endFrameUrl1 =
+    'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_c9c38c9fab91ea3adcd49f2e2728d7cedr.png';
+  const endFrameUrl2 =
+    'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_629f785ffc580bb9f7d43f47987ac9cadr.png';
 
   // Logic to decide whether to show the video or the static end frame image
   const showEndFrame = !isHovering && hasPlayedOnce;
@@ -18,22 +22,32 @@ const Hero = () => {
     const video = videoRef.current;
     if (video) {
       if (isHovering) {
+        if (fadeTimeoutRef.current) {
+          clearTimeout(fadeTimeoutRef.current);
+        }
+        setIsFaded(false); // Reset fade on hover
         video.loop = true;
-        // If video is paused or has ended, play it
         if (video.paused || video.ended) {
           video.play().catch(console.error);
         }
       } else {
-        // When not hovering, don't loop. It will play to the end and then stop.
         video.loop = false;
       }
     }
+    return () => {
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current);
+      }
+    };
   }, [isHovering]);
 
   const onVideoEnd = () => {
     // This will only be called when loop is false.
     if (!isHovering) {
       setHasPlayedOnce(true);
+      fadeTimeoutRef.current = setTimeout(() => {
+        setIsFaded(true);
+      }, 500); // 0.5s delay before fading
     }
   };
 
@@ -44,16 +58,27 @@ const Hero = () => {
       onMouseLeave={() => setIsHovering(false)}
     >
       <div className="absolute inset-0 z-0">
-        {/* Conditionally render Image or Video */}
         {showEndFrame ? (
-          <Image
-            src={endFrameUrl}
-            alt="Abstract technology background"
-            fill
-            className="h-full w-full object-cover"
-            priority
-            unoptimized
-          />
+          <>
+            <Image
+              src={endFrameUrl1}
+              alt="Abstract technology background"
+              fill
+              className="h-full w-full object-cover"
+              priority
+              unoptimized
+            />
+            <Image
+              src={endFrameUrl2}
+              alt="Abstract technology background fade"
+              fill
+              className={`h-full w-full object-cover transition-opacity duration-1000 ${
+                isFaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              priority
+              unoptimized
+            />
+          </>
         ) : (
           <video
             ref={videoRef}
