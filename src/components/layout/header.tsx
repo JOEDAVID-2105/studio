@@ -59,12 +59,12 @@ const Header = () => {
             </Link>
           ))}
           <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
-             <a href="mailto:joelsofflmail@gmail.com" target="_blank" rel="noopener noreferrer">Contact Me</a>
+             <a href="mailto:joelsofflmail@gmail.com">Contact Me</a>
           </Button>
         </nav>
         <div className="md:hidden">
             <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <a href="mailto:joelsofflmail@gmail.com" target="_blank" rel="noopener noreferrer">Contact</a>
+                <a href="mailto:joelsofflmail@gmail.com">Contact</a>
             </Button>
         </div>
       </div>
