@@ -33,10 +33,10 @@ const About = () => {
   return (
     <div className="max-w-3xl mx-auto">
        <div className="text-center mb-12">
-        <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h2 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
           About Me
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground">
+        <p className="mt-3 text-base sm:text-lg text-muted-foreground">
           A glimpse into my mindset, workflow, and skills.
         </p>
       </div>
@@ -48,13 +48,13 @@ const About = () => {
           <TabsTrigger value="ai">AI Tooling</TabsTrigger>
         </TabsList>
         <TabsContent value="intro" className="pt-6">
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             I’m Joel, an MSc Mathematics graduate focused on building practical,
             AI-assisted web applications and modern, product-driven web
             experiences using JavaScript and Firebase. I value clarity,
             maintainable systems, and solutions built for real users.
           </p>
-          <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mt-4">
             My academic background includes postgraduate-level mathematical
             research, where I worked with abstract structures and formal
             reasoning. This experience strengthened my ability to think
@@ -68,7 +68,7 @@ const About = () => {
             {thinkingPoints.map((point, index) => (
               <li key={index} className="flex items-start">
                 <CheckCircle2 className="h-5 w-5 text-accent mr-3 mt-1 flex-shrink-0" />
-                <span className="text-muted-foreground">{point}</span>
+                <span className="text-muted-foreground text-base sm:text-lg">{point}</span>
               </li>
             ))}
           </ul>
@@ -78,7 +78,7 @@ const About = () => {
             {workPoints.map((point, index) => (
               <li key={index} className="flex items-start">
                 <CheckCircle2 className="h-5 w-5 text-accent mr-3 mt-1 flex-shrink-0" />
-                <span className="text-muted-foreground">{point}</span>
+                <span className="text-muted-foreground text-base sm:text-lg">{point}</span>
               </li>
             ))}
           </ul>
@@ -88,7 +88,7 @@ const About = () => {
             {aiToolingPoints.map((point, index) => (
               <li key={index} className="flex items-start">
                 <CheckCircle2 className="h-5 w-5 text-accent mr-3 mt-1 flex-shrink-0" />
-                <span className="text-muted-foreground">{point}</span>
+                <span className="text-muted-foreground text-base sm:text-lg">{point}</span>
               </li>
             ))}
           </ul>

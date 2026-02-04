@@ -8,10 +8,10 @@ const Footer = () => {
   return (
     <footer className="bg-primary w-full py-8">
       <div className="container mx-auto px-4 text-center text-primary-foreground">
-        <h3 className="font-headline text-2xl md:text-3xl font-bold">
+        <h3 className="font-headline text-xl md:text-2xl font-bold">
           Get in Touch
         </h3>
-        <p className="mt-2 text-muted-foreground max-w-xl mx-auto">
+        <p className="mt-2 text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
           I'm currently available for freelance work and open to new opportunities.
           Feel free to reach out.
         </p>
@@ -28,7 +28,7 @@ const Footer = () => {
           </Button>
         </div>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between border-t border-border/20 pt-6 text-sm text-muted-foreground">
-          <p className="order-2 sm:order-1 mt-4 sm:mt-0">&copy; {new Date().getFullYear()} Joel David. All rights reserved.</p>
+          <p className="order-2 sm:order-1 mt-4 sm:mt-0 text-xs sm:text-sm">&copy; {new Date().getFullYear()} Joel David. All rights reserved.</p>
           <div className="order-1 sm:order-2 flex items-center gap-4">
             <a href="https://www.instagram.com/d__codes?igsh=a3R5MTB1M21wNHQ2" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-accent transition-colors">
               <Instagram className="h-5 w-5" />

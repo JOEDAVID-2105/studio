@@ -9,10 +9,10 @@ const Projects = () => {
   return (
     <div>
       <div className="text-center mb-12">
-        <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h2 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
           My Projects
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="mt-3 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
           Here's a selection of some projects I've worked on, showcasing my skills in design and development.
         </p>
       </div>
@@ -31,8 +31,8 @@ const Projects = () => {
               </div>
             </CardHeader>
             <div className="p-6 flex flex-col flex-grow">
-              <CardTitle className="font-headline text-xl">{project.title}</CardTitle>
-              <CardDescription className="mt-2 flex-grow">{project.description}</CardDescription>
+              <CardTitle className="font-headline text-lg">{project.title}</CardTitle>
+              <CardDescription className="mt-2 flex-grow text-sm sm:text-base">{project.description}</CardDescription>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.techStack.map((tech: string) => (
                   <Badge key={tech} variant="secondary">

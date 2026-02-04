@@ -10,10 +10,10 @@ const Faq = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="text-center">
-        <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h2 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
           Frequently Asked Questions
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground">
+        <p className="mt-3 text-base sm:text-lg text-muted-foreground">
           A few quick answers to common questions. If you have others, feel free
           to reach out.
         </p>
@@ -22,10 +22,10 @@ const Faq = () => {
       <Accordion type="single" collapsible className="w-full mt-10">
         {faqs.map((faq) => (
           <AccordionItem key={faq.id} value={faq.id}>
-            <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+            <AccordionTrigger className="text-left font-semibold text-base sm:text-lg hover:no-underline">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground text-base whitespace-pre-line">
+            <AccordionContent className="text-muted-foreground text-sm sm:text-base whitespace-pre-line">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>

@@ -41,6 +41,13 @@ const Header = () => {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
     setIsSheetOpen(false);
   };
+  
+  const handleGoTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <header
@@ -81,7 +88,8 @@ const Header = () => {
           </Dialog>
           <Link
             href="/"
-            className="font-headline text-xl font-bold tracking-tight text-white"
+            onClick={handleGoTop}
+            className="font-headline text-lg sm:text-xl font-bold tracking-tight text-white"
           >
             Joel David
           </Link>
@@ -116,7 +124,7 @@ const Header = () => {
                         key={link.name}
                         href={link.href}
                         onClick={(e) => handleScrollTo(e, link.href)}
-                        className="text-lg font-medium text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
                       >
                         {link.name}
                       </Link>

@@ -85,10 +85,10 @@ Ask me about a role, and I'll explain how Joel can be a great fit for your team.
   return (
     <div className="max-w-4xl mx-auto" ref={sectionRef}>
       <div className="text-center">
-        <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h2 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
           D'codes: Intelligent Guide
         </h2>
-        <p className="mt-4 text-lg text-muted-foreground">
+        <p className="mt-3 text-base sm:text-lg text-muted-foreground">
           Ask my AI assistant, D'code, about a role, and it will explain how I can be a great fit.
         </p>
       </div>
@@ -100,7 +100,7 @@ Ask me about a role, and I'll explain how Joel can be a great fit for your team.
                 <Image src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png" alt="D'code avatar" fill className="object-cover" />
             </div>
              <div className="rounded-lg bg-secondary p-4 max-w-xl">
-                <p className="whitespace-pre-line text-muted-foreground leading-relaxed">{initialBotMessage}</p>
+                <p className="whitespace-pre-line text-sm sm:text-base text-muted-foreground leading-relaxed">{initialBotMessage}</p>
              </div>
            </div>
         )}
@@ -108,7 +108,7 @@ Ask me about a role, and I'll explain how Joel can be a great fit for your team.
         {state.userInput && (
           <div className="flex items-start justify-end gap-3">
              <div className="rounded-lg bg-primary p-4 max-w-xl">
-               <p className="text-primary-foreground">{state.userInput}</p>
+               <p className="text-primary-foreground text-sm sm:text-base">{state.userInput}</p>
              </div>
              <Avatar>
                <AvatarFallback>U</AvatarFallback>
@@ -122,7 +122,7 @@ Ask me about a role, and I'll explain how Joel can be a great fit for your team.
                 <Image src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png" alt="D'code avatar" fill className="object-cover" />
             </div>
              <div className="rounded-lg bg-secondary p-4 max-w-xl">
-                <p className="text-secondary-foreground flex items-center gap-2"><Loader2 className="h-4 w-4 animate-spin" /> D'code is thinking...</p>
+                <p className="text-secondary-foreground flex items-center gap-2 text-sm sm:text-base"><Loader2 className="h-4 w-4 animate-spin" /> D'code is thinking...</p>
              </div>
            </div>
         )}
@@ -133,7 +133,7 @@ Ask me about a role, and I'll explain how Joel can be a great fit for your team.
                 <Image src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png" alt="D'code avatar" fill className="object-cover" />
             </div>
             <div className="rounded-lg bg-secondary p-4 max-w-xl">
-              <p className="whitespace-pre-line text-muted-foreground leading-relaxed">
+              <p className="whitespace-pre-line text-sm sm:text-base text-muted-foreground leading-relaxed">
                 {state.data.response}
               </p>
               <div className="mt-4">

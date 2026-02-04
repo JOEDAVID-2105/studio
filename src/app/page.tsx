@@ -25,23 +25,23 @@ export default function Home() {
           <main>
             <Hero />
             <div className="container mx-auto px-4">
-              <section id="about" className="py-16 md:py-24">
+              <section id="about" className="py-12 md:py-20">
                 <About />
               </section>
               <Separator />
-              <section id="projects" className="py-16 md:py-24">
+              <section id="projects" className="py-12 md:py-20">
                 <Projects />
               </section>
               <Separator />
-              <section id="dcodes" className="py-16 md:py-24">
+              <section id="dcodes" className="py-12 md:py-20">
                 <Dcodes />
               </section>
               <Separator />
-              <section id="creative" className="py-16 md:py-24">
+              <section id="creative" className="py-12 md:py-20">
                 <CreativeWorks />
               </section>
               <Separator />
-              <section id="faq" className="py-16 md:py-24">
+              <section id="faq" className="py-12 md:py-20">
                 <Faq />
               </section>
             </div>
