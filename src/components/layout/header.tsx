@@ -38,7 +38,7 @@ const Header = () => {
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-3 font-headline text-xl font-bold tracking-tight text-white">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full">
+          <div className="relative h-10 w-10 overflow-hidden rounded-full transition-transform duration-300 ease-in-out hover:scale-110">
             <Image
               src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
               alt="Joel David Logo"

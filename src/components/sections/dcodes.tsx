@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Loader2, Mail } from 'lucide-react';
-import { useEffect, useActionState, useRef } from 'react';
+import { useEffect, useActionState, useRef, useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { ContactModal } from '@/components/contact-modal';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -33,6 +33,33 @@ const Dcodes = () => {
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+  const hasStartedChat = state.userInput || isPending || state.data;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger if the section is at least 40% visible
+        if (entry.isIntersecting && !hasBeenVisible) {
+          setHasBeenVisible(true);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [hasBeenVisible]);
+
 
   useEffect(() => {
     if (state.error) {
@@ -50,8 +77,13 @@ const Dcodes = () => {
     }
   }, [state, toast]);
 
+  const initialBotMessage = `Hello! I'm D'code, an AI assistant and an example of the kind of chatbot Joel David can build for your website.
+
+Ask me about a role, and I'll explain how Joel can be a great fit for your team.`;
+
+
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto" ref={sectionRef}>
       <div className="text-center">
         <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           D'codes: Intelligent Guide
@@ -62,6 +94,17 @@ const Dcodes = () => {
       </div>
 
       <div ref={chatContainerRef} className="mt-10 space-y-6 min-h-[200px]">
+        {hasBeenVisible && !hasStartedChat && (
+           <div className="flex items-start gap-3">
+             <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-accent shrink-0">
+                <Image src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png" alt="D'code avatar" fill className="object-cover" />
+            </div>
+             <div className="rounded-lg bg-secondary p-4 max-w-xl">
+                <p className="whitespace-pre-line text-muted-foreground leading-relaxed">{initialBotMessage}</p>
+             </div>
+           </div>
+        )}
+        
         {state.userInput && (
           <div className="flex items-start justify-end gap-3">
              <div className="rounded-lg bg-primary p-4 max-w-xl">
