@@ -62,10 +62,12 @@ export function ContactModal({ children, onOpenChange }: { children: React.React
         throw new Error('EmailJS is not loaded.');
       }
     } catch (error: any) {
+      console.error("EmailJS Error:", error);
+      const description = error?.text || 'An unknown error occurred. Please check the EmailJS configuration and template variables.';
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: error?.text || "Could not send the email. Please try again.",
+        description: description,
       });
     }
   };
