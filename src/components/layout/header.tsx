@@ -128,7 +128,15 @@ const Header = () => {
             </Button>
           </ContactModal>
         </nav>
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          <ContactModal>
+            <Button
+              size="sm"
+              className="bg-accent text-accent-foreground hover:bg-accent/90"
+            >
+              Contact Me
+            </Button>
+          </ContactModal>
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -155,16 +163,6 @@ const Header = () => {
                   </Link>
                 ))}
               </nav>
-              <div className="mt-auto">
-                <ContactModal>
-                  <Button
-                    size="lg"
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-                  >
-                    Contact Me
-                  </Button>
-                </ContactModal>
-              </div>
             </SheetContent>
           </Sheet>
         </div>
