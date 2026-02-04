@@ -7,6 +7,7 @@ import Footer from '@/components/layout/footer';
 import Hero from '@/components/sections/hero';
 import About from '@/components/sections/about';
 import Projects from '@/components/sections/projects';
+import CreativeWorks from '@/components/sections/creative-works';
 import Dcodes from '@/components/sections/dcodes';
 import Faq from '@/components/sections/faq';
 import { Separator } from '@/components/ui/separator';
@@ -30,6 +31,10 @@ export default function Home() {
               <Separator />
               <section id="projects" className="py-16 md:py-24">
                 <Projects />
+              </section>
+              <Separator />
+              <section id="creative-works" className="py-16 md:py-24">
+                <CreativeWorks />
               </section>
               <Separator />
               <section id="dcodes" className="py-16 md:py-24">
