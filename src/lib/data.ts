@@ -3,36 +3,13 @@ import { PlaceHolderImages } from './placeholder-images';
 export const projects = [
   {
     id: 1,
-    title: 'Collaborative Whiteboard',
+    title: 'Custos Omega',
     description:
-      'A real-time collaborative whiteboard application allowing multiple users to draw and share ideas simultaneously. Built with a focus on low-latency and intuitive user experience.',
-    techStack: ['React', 'Firebase', 'TypeScript', 'Tailwind CSS'],
+      'A sophisticated security and threat monitoring dashboard providing real-time analytics and threat intelligence. Designed for proactive defense and incident response.',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Recharts'],
     imageUrl: PlaceHolderImages.find((img) => img.id === 'project-1')?.imageUrl || '',
     imageHint: PlaceHolderImages.find((img) => img.id === 'project-1')?.imageHint || '',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 2,
-    title: '3D Product Visualizer',
-    description:
-      'An interactive 3D product visualizer for e-commerce, enabling customers to view products from all angles and customize materials in real-time. Powered by WebGL.',
-    techStack: ['Three.js', 'Next.js', 'WebGL', 'ShadCN'],
-    imageUrl: PlaceHolderImages.find((img) => img.id === 'project-2')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find((img) => img.id === 'project-2')?.imageHint || '',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 3,
-    title: 'E-commerce Platform',
-    description:
-      "A full-stack e-commerce solution featuring a custom content management system, Stripe integration for payments, and a server-rendered front-end for optimal SEO.",
-    techStack: ['Next.js', 'Node.js', 'Stripe', 'GenAI'],
-    imageUrl: PlaceHolderImages.find((img) => img.id === 'project-3')?.imageUrl || '',
-    imageHint: PlaceHolderImages.find((img) => img.id === 'project-3')?.imageHint || '',
-    liveUrl: '#',
-    githubUrl: '#',
+    liveUrl: 'https://custos-omega.vercel.app/',
   },
 ];
 
