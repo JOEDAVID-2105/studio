@@ -5,6 +5,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,18 +42,37 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-3 font-headline text-xl font-bold tracking-tight text-white">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full transition-transform duration-300 ease-in-out hover:scale-110">
-            <Image
-              src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
-              alt="Joel David Logo"
-              fill
-              className="object-cover scale-[2.5]"
-              unoptimized
-            />
-          </div>
-          Joel David
-        </Link>
+        <div className="flex items-center gap-3">
+          <Dialog>
+            <DialogTrigger asChild>
+              <div className="relative h-10 w-10 cursor-pointer overflow-hidden rounded-full transition-transform duration-300 ease-in-out hover:scale-110">
+                <Image
+                  src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
+                  alt="Joel David Logo"
+                  fill
+                  className="object-cover scale-[2.5]"
+                  unoptimized
+                />
+              </div>
+            </DialogTrigger>
+            <DialogContent className="flex h-auto max-w-[90vw] items-center justify-center border-none bg-transparent p-0 shadow-none sm:max-w-md">
+              <Image
+                src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
+                alt="Joel David Logo"
+                width={400}
+                height={400}
+                className="h-auto max-w-full rounded-lg"
+                unoptimized
+              />
+            </DialogContent>
+          </Dialog>
+          <Link
+            href="/"
+            className="font-headline text-xl font-bold tracking-tight text-white"
+          >
+            Joel David
+          </Link>
+        </div>
         <nav className="hidden md:flex items-center gap-4">
           {navLinks.map((link) => (
             <Link
