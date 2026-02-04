@@ -17,7 +17,7 @@ const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
   };
 
   const desktopVideo =
-    'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/20260204_090949_output_tiny_s3_20260204-090918.mp4';
+    'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/upscaled-video%20(1).mp4';
   const mobileVideo =
     'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/upscaled-video.mp4';
 
