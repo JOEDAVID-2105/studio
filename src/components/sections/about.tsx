@@ -1,4 +1,7 @@
+'use client';
+
 import { CheckCircle2 } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const About = () => {
   const thinkingPoints = [
@@ -18,18 +21,22 @@ const About = () => {
   ];
 
   return (
-    <div className="grid md:grid-cols-3 gap-12 items-start">
-      <div className="md:col-span-1">
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          I’m Joel, an MSc Mathematics graduate focused on building practical
-          AI-assisted web applications and modern, product-driven web
-          experiences using JavaScript and Firebase. I value clarity,
-          maintainable systems, and solutions built for real users.
-        </p>
-      </div>
-
-      <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-12">
-        <div>
+    <div className="max-w-3xl mx-auto">
+      <Tabs defaultValue="intro" className="w-full">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="intro">Introduction</TabsTrigger>
+          <TabsTrigger value="thinking">Thinking</TabsTrigger>
+          <TabsTrigger value="work">Work</TabsTrigger>
+        </TabsList>
+        <TabsContent value="intro" className="pt-6">
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            I’m Joel, an MSc Mathematics graduate focused on building practical
+            AI-assisted web applications and modern, product-driven web
+            experiences using JavaScript and Firebase. I value clarity,
+            maintainable systems, and solutions built for real users.
+          </p>
+        </TabsContent>
+        <TabsContent value="thinking" className="pt-6">
           <ul className="space-y-4">
             {thinkingPoints.map((point, index) => (
               <li key={index} className="flex items-start">
@@ -38,9 +45,8 @@ const About = () => {
               </li>
             ))}
           </ul>
-        </div>
-
-        <div>
+        </TabsContent>
+        <TabsContent value="work" className="pt-6">
           <ul className="space-y-4">
             {workPoints.map((point, index) => (
               <li key={index} className="flex items-start">
@@ -49,8 +55,8 @@ const About = () => {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
