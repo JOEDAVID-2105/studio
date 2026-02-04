@@ -3,8 +3,8 @@
     {
       "id": "project-1",
       "description": "Thumbnail for a personal finance app project.",
-      "imageUrl": "https://images.unsplash.com/photo-1579621970795-87f91d908377?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHwzZCUyMGZpbmFuY2V8ZW58MHx8fHwxNzIwNDgwNjUxfDA&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "finance app"
+      "imageUrl": "https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_07a422d10beacc0b7274a55ea85ad2ddeg.png",
+      "imageHint": "custos app"
     }
   ]
 }

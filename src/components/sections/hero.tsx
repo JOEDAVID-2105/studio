@@ -9,7 +9,7 @@ const Hero = () => {
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
 
   const endFrameUrl =
-    'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/frame_000_delay-0.042s.webp';
+    'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/frame_190_delay-0.042s.webp';
 
   // Logic to decide whether to show the video or the static end frame image
   const showEndFrame = !isHovering && hasPlayedOnce;
