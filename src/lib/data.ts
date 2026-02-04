@@ -18,7 +18,7 @@ export const faqs = [
     id: 'faq-1',
     question: 'What technologies are you most passionate about?',
     answer:
-      "I'm deeply passionate about the modern web stack, particularly Next.js and the React ecosystem. I also have a strong interest in 3D graphics with Three.js/WebGL and the creative possibilities of Generative AI.",
+      'I’m passionate about HTML, CSS, JavaScript, Firebase, and Progressive Web Apps, with a strong interest in scroll-based motion, AI-assisted features, and audio/video editing for building clean, engaging, real-world web experiences.',
   },
   {
     id: 'faq-2',
