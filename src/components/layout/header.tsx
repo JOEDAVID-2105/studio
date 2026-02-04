@@ -141,7 +141,7 @@ const Header = () => {
               className="w-[300px] bg-background border-l-border flex flex-col p-6"
             >
               <SheetHeader>
-                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <SheetTitle>Navigation</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-6 mt-10">
                 {navLinks.map((link) => (
@@ -156,11 +156,7 @@ const Header = () => {
                 ))}
               </nav>
               <div className="mt-auto">
-                <ContactModal
-                  onOpenChange={(open) => {
-                    if (open) setIsSheetOpen(false);
-                  }}
-                >
+                <ContactModal>
                   <Button
                     size="lg"
                     className="w-full bg-accent text-accent-foreground hover:bg-accent/90"

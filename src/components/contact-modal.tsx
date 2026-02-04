@@ -82,7 +82,7 @@ export function ContactModal({ children, onOpenChange }: { children: React.React
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-card border-border max-h-[85vh] overflow-y-auto top-[5vh] translate-y-0 sm:top-1/2 sm:-translate-y-1/2">
+      <DialogContent className="sm:max-w-[425px] bg-card border-border max-h-[90vh] overflow-y-auto top-4 translate-y-0 sm:top-1/2 sm:-translate-y-1/2">
         <DialogHeader>
           <DialogTitle>Contact Me</DialogTitle>
           <DialogDescription>
