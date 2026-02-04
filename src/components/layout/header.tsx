@@ -121,6 +121,7 @@ const Header = () => {
           ))}
           <ContactModal>
             <Button
+              id="contact-me-desktop"
               size="sm"
               className="bg-accent text-accent-foreground hover:bg-accent/90"
             >
@@ -129,8 +130,11 @@ const Header = () => {
           </ContactModal>
         </nav>
         <div className="md:hidden flex items-center gap-2">
-          <ContactModal>
+          <ContactModal onOpenChange={(open) => {
+              if (open) setIsSheetOpen(false);
+          }}>
             <Button
+              id="contact-me-mobile"
               size="sm"
               className="bg-accent text-accent-foreground hover:bg-accent/90"
             >

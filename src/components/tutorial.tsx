@@ -1,31 +1,45 @@
 'use client';
 
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useMemo } from 'react';
 import { Button } from './ui/button';
 import { X } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
-const TUTORIAL_STORAGE_KEY = 'portfolio-tutorial-completed-v2';
-
-const tutorialSteps = [
-  {
-    targetId: 'quick-nav-button',
-    title: 'Quick Navigation',
-    description: "Click this button to scroll to the top. Hold it to open a menu for jumping to different sections.",
-    position: 'top-right',
-  },
-  {
-    targetId: 'dcodes',
-    title: "Try D'code!",
-    description: "Ask my AI assistant how Joel fits a role you have in mind. It's an example of his work!",
-    position: 'top-center',
-  },
-];
+const TUTORIAL_STORAGE_KEY = 'portfolio-tutorial-completed-v3';
 
 const Tutorial = () => {
+  const isMobile = useIsMobile();
   const [isClient, setIsClient] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
+
+  const tutorialSteps = useMemo(() => [
+    {
+      targetId: 'quick-nav-button',
+      title: 'Quick Navigation',
+      description: "Click the floating button to scroll to the top. Hold it to open a menu for jumping to different sections.",
+      position: 'top-right',
+    },
+     {
+      targetId: 'projects',
+      title: 'View My Projects',
+      description: 'This section showcases some of the projects Joel has worked on. Scroll down to see more!',
+      position: 'top-center',
+    },
+    {
+      targetId: 'dcodes',
+      title: "Try D'code!",
+      description: "Ask my AI assistant how Joel fits a role you have in mind. It's an example of his work!",
+      position: 'top-center',
+    },
+    {
+      targetId: isMobile ? 'contact-me-mobile' : 'contact-me-desktop',
+      title: 'Get In Touch',
+      description: 'Want to work together or have a question? Click here to send a message.',
+      position: 'bottom-right',
+    }
+  ], [isMobile]);
 
   useEffect(() => {
     setIsClient(true);
@@ -40,19 +54,25 @@ const Tutorial = () => {
     if (!showTutorial || !isClient) return;
 
     const step = tutorialSteps[currentStepIndex];
-    let element = document.getElementById(step.targetId);
+    let element: HTMLElement | null = null;
+    if (step.targetId) {
+        element = document.getElementById(step.targetId);
+    }
 
     const updateRect = () => {
-      element = document.getElementById(step.targetId);
-      if (element) {
-        setTargetRect(element.getBoundingClientRect());
-      }
+        if(step.targetId) {
+            element = document.getElementById(step.targetId);
+            if (element) {
+                setTargetRect(element.getBoundingClientRect());
+            }
+        }
     }
     
     if (step.targetId === 'quick-nav-button') {
         const findButton = () => {
             element = document.getElementById(step.targetId);
-            if (element) {
+            const isVisible = element && getComputedStyle(element).opacity === '1';
+            if (isVisible) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 setTimeout(updateRect, 500);
             } else {
@@ -75,7 +95,7 @@ const Tutorial = () => {
       window.removeEventListener('scroll', updateRect);
     };
 
-  }, [showTutorial, currentStepIndex, isClient]);
+  }, [showTutorial, currentStepIndex, isClient, tutorialSteps]);
 
   const finishTutorial = () => {
     localStorage.setItem(TUTORIAL_STORAGE_KEY, 'true');
@@ -98,14 +118,17 @@ const Tutorial = () => {
 
   const tooltipStyle: React.CSSProperties = {};
   if (currentStep.position === 'top-right') {
-    tooltipStyle.top = 'auto';
     tooltipStyle.bottom = window.innerHeight - targetRect.top + 16;
-    tooltipStyle.left = 'auto';
     tooltipStyle.right = window.innerWidth - targetRect.right;
-    tooltipStyle.transform = 'none';
   } else if (currentStep.position === 'top-center') {
-    tooltipStyle.top = 'auto';
     tooltipStyle.bottom = window.innerHeight - targetRect.top + 16;
+    tooltipStyle.left = targetRect.left + targetRect.width / 2;
+    tooltipStyle.transform = 'translateX(-50%)';
+  } else if (currentStep.position === 'bottom-right') {
+    tooltipStyle.top = targetRect.bottom + 16;
+    tooltipStyle.right = window.innerWidth - targetRect.right;
+  } else if (currentStep.position === 'bottom-center') {
+    tooltipStyle.top = targetRect.bottom + 16;
     tooltipStyle.left = targetRect.left + targetRect.width / 2;
     tooltipStyle.transform = 'translateX(-50%)';
   }
@@ -119,12 +142,12 @@ const Tutorial = () => {
         {/* Highlight Box */}
         <div style={{
             position: 'fixed',
-            top: targetRect.top - 4,
-            left: targetRect.left - 4,
-            width: targetRect.width + 8,
-            height: targetRect.height + 8,
+            top: targetRect.top - 8,
+            left: targetRect.left - 8,
+            width: targetRect.width + 16,
+            height: targetRect.height + 16,
             boxShadow: '0 0 0 9999px rgba(0, 0, 0, 0.6)',
-            borderRadius: 'var(--radius)',
+            borderRadius: 'calc(var(--radius) + 4px)',
             transition: 'top 0.3s, left 0.3s, width 0.3s, height 0.3s',
             pointerEvents: 'none',
             zIndex: 1001,
