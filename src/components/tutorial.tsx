@@ -42,14 +42,14 @@ const Tutorial = () => {
   useEffect(() => {
     setIsClient(true);
     const hasCompleted = localStorage.getItem(TUTORIAL_STORAGE_KEY);
-    if (!hasCompleted) {
+    if (!hasCompleted && !isMobile) {
         const timer = setTimeout(() => setShowTutorial(true), 2500);
         return () => clearTimeout(timer);
     }
-  }, []);
+  }, [isMobile]);
 
   useLayoutEffect(() => {
-    if (!showTutorial || !isClient) return;
+    if (!showTutorial || !isClient || isMobile) return;
 
     const step = tutorialSteps[currentStepIndex];
     let element: HTMLElement | null = null;
@@ -158,7 +158,7 @@ const Tutorial = () => {
     }
   };
   
-  if (!showTutorial || !targetRect || !isClient) {
+  if (!showTutorial || !targetRect || !isClient || isMobile) {
     return null;
   }
   
