@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "project-1",
-      "description": "Thumbnail for a security dashboard project.",
-      "imageUrl": "https://images.unsplash.com/photo-1526374965328-5f61d4dc18c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjeWJlciUyMHNlY3VyaXR5fGVufDB8fHx8MTcyMDM1NzY3Nnww&ixlib=rb-4.0.3&q=80&w=1080",
-      "imageHint": "cyber security"
+      "description": "Thumbnail for a personal finance app project.",
+      "imageUrl": "https://images.unsplash.com/photo-1579621970795-87f91d908377?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHwzZCUyMGZpbmFuY2V8ZW58MHx8fHwxNzIwNDgwNjUxfDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "finance app"
     }
   ]
 }

@@ -102,5 +102,8 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(circle at 15% 20%, hsl(var(--accent) / 0.15), transparent 35%),
+                      radial-gradient(circle at 85% 70%, hsl(var(--accent) / 0.1), transparent 40%);
+    background-attachment: fixed;
   }
 }

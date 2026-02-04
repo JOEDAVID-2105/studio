@@ -5,8 +5,8 @@ export const projects = [
     id: 1,
     title: 'Custos Omega',
     description:
-      'A sophisticated security and threat monitoring dashboard providing real-time analytics and threat intelligence. Designed for proactive defense and incident response.',
-    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Recharts'],
+      'Custos Omega helps individuals and households track income and expenses through a clean, AI-assisted progressive web app. Built to explore real-world financial workflows, usability, and scalable frontend architecture.',
+    techStack: ['PWA', 'Firebase'],
     imageUrl: PlaceHolderImages.find((img) => img.id === 'project-1')?.imageUrl || '',
     imageHint: PlaceHolderImages.find((img) => img.id === 'project-1')?.imageHint || '',
     liveUrl: 'https://custos-omega.vercel.app/',
