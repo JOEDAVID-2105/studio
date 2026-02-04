@@ -8,10 +8,10 @@ const Footer = () => {
   return (
     <footer className="bg-primary w-full py-8">
       <div className="container mx-auto px-4 text-center text-primary-foreground">
-        <h3 className="font-headline text-xl md:text-2xl font-bold">
+        <h3 className="font-headline text-lg md:text-2xl font-bold">
           Get in Touch
         </h3>
-        <p className="mt-2 text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
+        <p className="mt-2 text-xs md:text-base text-muted-foreground max-w-xl mx-auto">
           I'm currently available for freelance work and open to new opportunities.
           Feel free to reach out.
         </p>

@@ -15,10 +15,10 @@ const CreativeWorks = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-12">
-        <h2 className="font-headline text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+        <h2 className="font-headline text-xl sm:text-3xl font-bold tracking-tight text-foreground">
           Creative Works
         </h2>
-        <p className="mt-3 text-base sm:text-lg text-muted-foreground">
+        <p className="mt-3 text-sm sm:text-lg text-muted-foreground">
           A look into my creative production skills.
         </p>
       </div>
@@ -26,7 +26,7 @@ const CreativeWorks = () => {
         {creativeSkills.map((skill, index) => (
           <li key={index} className="flex items-start">
             <CheckCircle2 className="h-5 w-5 text-accent mr-3 mt-1 flex-shrink-0" />
-            <span className="text-muted-foreground text-base sm:text-lg">{skill}</span>
+            <span className="text-muted-foreground text-sm sm:text-lg">{skill}</span>
           </li>
         ))}
       </ul>

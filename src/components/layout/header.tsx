@@ -89,7 +89,7 @@ const Header = () => {
           <Link
             href="/"
             onClick={handleGoTop}
-            className="font-headline text-lg sm:text-xl font-bold tracking-tight text-white"
+            className="font-headline text-base sm:text-xl font-bold tracking-tight text-white"
           >
             Joel David
           </Link>
@@ -124,7 +124,7 @@ const Header = () => {
                         key={link.name}
                         href={link.href}
                         onClick={(e) => handleScrollTo(e, link.href)}
-                        className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                       >
                         {link.name}
                       </Link>
