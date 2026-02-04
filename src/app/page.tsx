@@ -10,6 +10,7 @@ import Projects from '@/components/sections/projects';
 import Dcodes from '@/components/sections/dcodes';
 import Faq from '@/components/sections/faq';
 import { Separator } from '@/components/ui/separator';
+import CreativeWorks from '@/components/sections/creative-works';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -34,6 +35,10 @@ export default function Home() {
               <Separator />
               <section id="dcodes" className="py-16 md:py-24">
                 <Dcodes />
+              </section>
+              <Separator />
+              <section id="creative" className="py-16 md:py-24">
+                <CreativeWorks />
               </section>
               <Separator />
               <section id="faq" className="py-16 md:py-24">

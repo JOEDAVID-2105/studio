@@ -20,15 +20,6 @@ const About = () => {
     'Audio and video editing for creative projects',
   ];
 
-  const creativeSkills = [
-    'Music production with a strong focus on structure, timing, and arrangement',
-    'Audio editing and sound refinement for creative and presentation-based projects',
-    'Video editing for short-form and long-form digital content',
-    'Experience using Logic Pro for music production and audio workflows',
-    'Proficient with Adobe Suite (including video and media editing tools)',
-    'Apply creative production skills to enhance product presentation and storytelling',
-  ];
-
   const aiToolingPoints = [
     'Use AI tools to accelerate development, prototyping, and problem solving',
     'Experienced with ChatGPT for logic breakdown, code generation, and refactoring',
@@ -46,15 +37,14 @@ const About = () => {
           About Me
         </h2>
         <p className="mt-4 text-lg text-muted-foreground">
-          A glimpse into my mindset, workflow, and creative skills.
+          A glimpse into my mindset, workflow, and skills.
         </p>
       </div>
       <Tabs defaultValue="intro" className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="intro">Introduction</TabsTrigger>
           <TabsTrigger value="thinking">Thinking</TabsTrigger>
           <TabsTrigger value="work">Work</TabsTrigger>
-          <TabsTrigger value="creative">Creative</TabsTrigger>
           <TabsTrigger value="ai">AI Tooling</TabsTrigger>
         </TabsList>
         <TabsContent value="intro" className="pt-6">
@@ -89,16 +79,6 @@ const About = () => {
               <li key={index} className="flex items-start">
                 <CheckCircle2 className="h-5 w-5 text-accent mr-3 mt-1 flex-shrink-0" />
                 <span className="text-muted-foreground">{point}</span>
-              </li>
-            ))}
-          </ul>
-        </TabsContent>
-        <TabsContent value="creative" className="pt-6">
-          <ul className="space-y-4">
-            {creativeSkills.map((skill, index) => (
-              <li key={index} className="flex items-start">
-                <CheckCircle2 className="h-5 w-5 text-accent mr-3 mt-1 flex-shrink-0" />
-                <span className="text-muted-foreground">{skill}</span>
               </li>
             ))}
           </ul>
