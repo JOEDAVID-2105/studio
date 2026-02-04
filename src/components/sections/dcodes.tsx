@@ -27,7 +27,7 @@ function SubmitButton() {
   );
 }
 
-const Dcodes = () => {
+const Dcodes = ({ onFirstUse }: { onFirstUse?: () => void }) => {
   const initialState: TailorContentState = { data: null, error: null, message: '', userInput: undefined };
   const [state, formAction, isPending] = useActionState(tailorContentAction, initialState);
   const { toast } = useToast();
@@ -35,8 +35,16 @@ const Dcodes = () => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
-  const hasStartedChat = state.userInput || isPending || state.data;
+  const hasStartedChat = !!(state.userInput || isPending || state.data);
+  const onFirstUseCalled = useRef(false);
 
+  useEffect(() => {
+    if (hasStartedChat && onFirstUse && !onFirstUseCalled.current) {
+      onFirstUse();
+      onFirstUseCalled.current = true;
+    }
+  }, [hasStartedChat, onFirstUse]);
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -148,7 +156,7 @@ Ask me about a role, and I'll explain how Joel can be a great fit for your team.
         )}
       </div>
 
-      <Card className="mt-8 sm:sticky bottom-4 z-10 bg-card/80 backdrop-blur-sm">
+      <Card className="mt-8 md:sticky bottom-4 z-10 bg-card/80 backdrop-blur-sm">
         <CardContent className="p-4 md:p-6">
           <form ref={formRef} action={formAction} className="flex flex-col sm:flex-row items-stretch gap-4">
             <Textarea
