@@ -37,6 +37,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
+        <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+        ></script>
+        <script src="/script.js" defer></script>
       </head>
       <body className="font-body bg-background antialiased">
         {children}
