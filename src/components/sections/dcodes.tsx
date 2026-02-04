@@ -148,7 +148,7 @@ Ask me about a role, and I'll explain how Joel can be a great fit for your team.
         )}
       </div>
 
-      <Card className="mt-8 sticky bottom-4 z-10 bg-card/80 backdrop-blur-sm">
+      <Card className="mt-8 sm:sticky bottom-4 z-10 bg-card/80 backdrop-blur-sm">
         <CardContent className="p-4 md:p-6">
           <form ref={formRef} action={formAction} className="flex flex-col sm:flex-row items-stretch gap-4">
             <Textarea
