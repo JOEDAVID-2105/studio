@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { ContactModal } from '@/components/contact-modal';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,14 +59,14 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
-          <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
-             <a href="mailto:joelsofflmail@gmail.com">Contact Me</a>
-          </Button>
+          <ContactModal>
+            <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">Contact Me</Button>
+          </ContactModal>
         </nav>
         <div className="md:hidden">
-            <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                <a href="mailto:joelsofflmail@gmail.com">Contact</a>
-            </Button>
+          <ContactModal>
+            <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">Contact</Button>
+          </ContactModal>
         </div>
       </div>
     </header>
