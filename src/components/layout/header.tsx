@@ -13,7 +13,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 
 const Header = () => {
@@ -36,12 +42,18 @@ const Header = () => {
     { name: 'FAQ', href: '#faq' },
   ];
 
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleScrollTo = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(href)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
     setIsSheetOpen(false);
   };
-  
+
   const handleGoTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (window.location.pathname === '/') {
       e.preventDefault();
@@ -52,7 +64,9 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-primary/80 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+        isScrolled
+          ? 'bg-primary/80 backdrop-blur-sm shadow-lg'
+          : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
@@ -106,35 +120,55 @@ const Header = () => {
             </Link>
           ))}
           <ContactModal>
-            <Button size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">Contact Me</Button>
+            <Button
+              size="sm"
+              className="bg-accent text-accent-foreground hover:bg-accent/90"
+            >
+              Contact Me
+            </Button>
           </ContactModal>
         </nav>
         <div className="md:hidden">
-           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-background border-l-border flex flex-col p-6">
-                <nav className="flex flex-col gap-6 mt-10">
-                  {navLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        onClick={(e) => handleScrollTo(e, link.href)}
-                        className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        {link.name}
-                      </Link>
-                  ))}
-                </nav>
-                <div className="mt-auto">
-                   <ContactModal onOpenChange={(open) => { if(open) setIsSheetOpen(false) }}>
-                      <Button size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">Contact Me</Button>
-                   </ContactModal>
-                </div>
+            <SheetContent
+              side="right"
+              className="w-[300px] bg-background border-l-border flex flex-col p-6"
+            >
+              <SheetHeader>
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-6 mt-10">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleScrollTo(e, link.href)}
+                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </nav>
+              <div className="mt-auto">
+                <ContactModal
+                  onOpenChange={(open) => {
+                    if (open) setIsSheetOpen(false);
+                  }}
+                >
+                  <Button
+                    size="lg"
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                  >
+                    Contact Me
+                  </Button>
+                </ContactModal>
+              </div>
             </SheetContent>
           </Sheet>
         </div>
