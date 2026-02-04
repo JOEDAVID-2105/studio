@@ -1,30 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Progress } from '@/components/ui/progress';
+import Image from 'next/image';
 
 interface LoadingScreenProps {
   onFinished: () => void;
 }
 
 const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
-  const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => setVisible(false), 500); // Fade out duration
-          setTimeout(onFinished, 1000); // Wait for fade out to complete
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 30); // Adjust speed of loading bar
+    const timer = setTimeout(() => {
+      setVisible(false); // Start fade out
+      setTimeout(onFinished, 500); // Call onFinished after fade out
+    }, 3500); // Show loading for 3.5 seconds
 
-    return () => clearInterval(interval);
+    return () => clearTimeout(timer);
   }, [onFinished]);
 
   return (
@@ -34,12 +26,23 @@ const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
       }`}
     >
       <div className="w-full max-w-xs text-center">
-        <h1 className="font-headline text-4xl font-bold text-foreground">
-          JD
-        </h1>
-        <p className="text-muted-foreground mt-2">Loading portfolio...</p>
-        <Progress value={progress} className="mt-4 h-2 [&>div]:bg-accent" />
-        <p className="mt-2 text-sm font-mono text-accent">{progress}%</p>
+        <Image
+          src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
+          alt="Logo"
+          width={80}
+          height={80}
+          className="mx-auto rounded-full mb-4"
+          unoptimized
+        />
+        <video
+          src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/20260204_090949_output_tiny_s3_20260204-090918.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full rounded-lg"
+        />
+        <p className="text-muted-foreground mt-4">Loading portfolio...</p>
       </div>
     </div>
   );

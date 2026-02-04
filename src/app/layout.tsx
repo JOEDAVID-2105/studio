@@ -5,6 +5,9 @@ import { Toaster } from '@/components/ui/toaster';
 export const metadata: Metadata = {
   title: "Joel David's Portfolio",
   description: 'Creative Developer & Designer',
+  icons: {
+    icon: 'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png',
+  },
 };
 
 export default function RootLayout({
