@@ -92,7 +92,7 @@ const Hero = () => {
             muted
             playsInline
             onEnded={onVideoEnd}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transform scale-110"
             src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/video%20test/More_dramatic_and_202602031947_0exdk.mp4"
             data-ai-hint="abstract technology"
             loop={false}

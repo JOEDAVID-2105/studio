@@ -26,7 +26,7 @@ const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
         muted
         playsInline
         onEnded={handleVideoEnd}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover transform scale-110"
       />
       <div className="relative z-10 text-center pb-10">
         <p className="text-muted-foreground text-sm">
