@@ -16,7 +16,7 @@ const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-end bg-background transition-opacity duration-500 ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
@@ -28,8 +28,8 @@ const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
         onEnded={handleVideoEnd}
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="relative z-10 text-center">
-        <p className="text-white mt-4 text-lg bg-black/50 px-4 py-2 rounded-lg">
+      <div className="relative z-10 text-center pb-10">
+        <p className="text-muted-foreground text-sm">
           Loading portfolio...
         </p>
       </div>
