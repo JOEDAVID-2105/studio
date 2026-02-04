@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 interface LoadingScreenProps {
   onFinished: () => void;
@@ -25,24 +24,16 @@ const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <div className="w-full max-w-xs text-center">
-        <Image
-          src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
-          alt="Logo"
-          width={80}
-          height={80}
-          className="mx-auto rounded-full mb-4"
-          unoptimized
-        />
-        <video
-          src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/20260204_090949_output_tiny_s3_20260204-090918.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full rounded-lg"
-        />
-        <p className="text-muted-foreground mt-4">Loading portfolio...</p>
+       <video
+        src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/20260204_090949_output_tiny_s3_20260204-090918.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="relative z-10 text-center">
+        <p className="text-white mt-4 text-lg bg-black/50 px-4 py-2 rounded-lg">Loading portfolio...</p>
       </div>
     </div>
   );

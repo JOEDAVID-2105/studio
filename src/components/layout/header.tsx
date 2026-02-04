@@ -33,13 +33,13 @@ const Header = () => {
         isScrolled ? 'bg-primary/80 backdrop-blur-sm shadow-lg' : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-3 font-headline text-xl font-bold tracking-tight text-white">
           <Image
             src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
             alt="Joel David Logo"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="rounded-full"
             unoptimized
           />
