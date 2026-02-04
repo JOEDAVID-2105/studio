@@ -30,7 +30,7 @@ const Footer = () => {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between border-t border-border/20 pt-6 text-sm text-muted-foreground">
           <p className="order-2 sm:order-1 mt-4 sm:mt-0">&copy; {new Date().getFullYear()} Joel David. All rights reserved.</p>
           <div className="order-1 sm:order-2 flex items-center gap-4">
-            <a href="https://www.instagram.com/joelgd_offl?igsh=MWZlb2xwbDIwdDZ6dg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="https://www.instagram.com/d__codes?igsh=a3R5MTB1M21wNHQ2" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-accent transition-colors">
               <Instagram className="h-5 w-5" />
             </a>
             <a href="https://youtube.com/@joelgdavid5013?si=7UurrEW9tzjKngkP" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-muted-foreground hover:text-accent transition-colors">
