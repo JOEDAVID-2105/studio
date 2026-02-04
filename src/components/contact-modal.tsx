@@ -48,7 +48,7 @@ export function ContactModal({ children, onOpenChange }: { children: React.React
       const emailJsWindow = window as any;
       if (emailJsWindow.emailjs) {
         await emailJsWindow.emailjs.send(
-          'service_x0x57ns',
+          'service_tyx3cnn',
           'template_wbkl3rk',
           data,
         );
