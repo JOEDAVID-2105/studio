@@ -19,14 +19,16 @@ export type TailorContentState = {
   data: { response: string } | null;
   error: string | null;
   message: string;
+  userInput?: string;
 };
 
 export async function tailorContentAction(
   prevState: TailorContentState,
   formData: FormData
 ): Promise<TailorContentState> {
+  const userInput = formData.get('recruiterProfile')?.toString();
   const validatedFields = actionSchema.safeParse({
-    recruiterProfile: formData.get('recruiterProfile'),
+    recruiterProfile: userInput,
   });
 
   if (!validatedFields.success) {
@@ -36,6 +38,7 @@ export async function tailorContentAction(
         validatedFields.error.flatten().fieldErrors.recruiterProfile?.[0] ||
         'Invalid input.',
       message: 'Failed to tailor content.',
+      userInput,
     };
   }
 
@@ -50,6 +53,7 @@ export async function tailorContentAction(
       data: result,
       error: null,
       message: 'Content tailored successfully.',
+      userInput: validatedFields.data.recruiterProfile,
     };
   } catch (error) {
     console.error(error);
@@ -57,6 +61,7 @@ export async function tailorContentAction(
       data: null,
       error: 'An unexpected error occurred while processing your request.',
       message: 'Failed to tailor content.',
+      userInput,
     };
   }
 }
