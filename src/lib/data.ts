@@ -18,7 +18,7 @@ export const faqs = [
     id: 'faq-1',
     question: 'What technologies are you most passionate about?',
     answer:
-      'I’m passionate about HTML, CSS, JavaScript, Firebase, and Progressive Web Apps, with a strong interest in scroll-based motion, AI-assisted features, and audio/video editing for building clean, engaging, real-world web experiences.',
+      'I’m passionate about HTML, CSS, JavaScript, Firebase, and Progressive Web Apps for building reliable web applications.\n\nI’m also deeply interested in modern web design, 3D-style contemporary interfaces, and product-focused web releases.\n\nSeparately, I work with audio and video editing for creative and media-focused projects.',
   },
   {
     id: 'faq-2',

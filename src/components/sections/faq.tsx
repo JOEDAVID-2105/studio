@@ -25,7 +25,7 @@ const Faq = () => {
             <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground text-base">
+            <AccordionContent className="text-muted-foreground text-base whitespace-pre-line">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>
