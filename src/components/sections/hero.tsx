@@ -1,87 +1,29 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-
-const TOTAL_FRAMES = 191;
-const FRAME_URL_PREFIX =
-  'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/';
-
-const generateFrameUrls = () => {
-  return Array.from(
-    { length: TOTAL_FRAMES },
-    (_, i) =>
-      `${FRAME_URL_PREFIX}frame_${i.toString().padStart(3, '0')}_delay-0.042s.webp`
-  );
-};
+import React from 'react';
 
 const Hero = () => {
-  const [frameIndex, setFrameIndex] = useState(0);
-  const [frames, setFrames] = useState<string[]>([]);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    const urls = generateFrameUrls();
-    setFrames(urls);
-
-    // Preload images
-    urls.forEach((src) => {
-      const img = new window.Image();
-      img.src = src;
-    });
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!scrollRef.current) return;
-      
-      const scrollY = window.scrollY;
-      const start = scrollRef.current.offsetTop;
-      const end = start + scrollRef.current.offsetHeight - window.innerHeight;
-
-      if (scrollY >= start && scrollY <= end) {
-        const scrollFraction = (scrollY - start) / (end - start);
-        const newFrameIndex = Math.min(
-          TOTAL_FRAMES - 1,
-          Math.floor(scrollFraction * TOTAL_FRAMES)
-        );
-        if (isFinite(newFrameIndex)) {
-            setFrameIndex(newFrameIndex);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section ref={scrollRef} className="relative h-[250vh] w-full">
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          {frames.length > 0 && frames[frameIndex] && (
-             <Image
-                ref={imageRef}
-                src={frames[frameIndex]}
-                alt="Cinematic parallax background sequence"
-                fill
-                priority
-                quality={80}
-                className="object-cover"
-                data-ai-hint="abstract technology"
-            />
-          )}
-        </div>
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 text-center text-white p-4">
-          <h1 className="font-headline text-5xl md:text-8xl font-bold tracking-tighter animate-fade-in-up">
-            JOEL DAVID
-          </h1>
-          <p className="mt-4 text-lg md:text-2xl text-muted-foreground animate-fade-in-up animation-delay-300">
-            Creative Developer & Designer
-          </p>
-        </div>
+    <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover"
+          src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/video%20test/More_dramatic_and_202602031947_0exdk.mp4"
+          data-ai-hint="abstract technology"
+        />
+      </div>
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="relative z-10 text-center text-white p-4">
+        <h1 className="font-headline text-5xl md:text-8xl font-bold tracking-tighter animate-fade-in-up">
+          JOEL DAVID
+        </h1>
+        <p className="mt-4 text-lg md:text-2xl text-muted-foreground animate-fade-in-up animation-delay-300">
+          Creative Developer & Designer
+        </p>
       </div>
     </section>
   );
