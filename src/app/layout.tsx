@@ -46,7 +46,7 @@ export default function RootLayout({
             __html: `
               (function(){
                 emailjs.init({
-                  publicKey: "bjBJVQBZHOJTt338v",
+                  publicKey: "VZw_qmR4yKwWdhsV6",
                 });
               })();
             `,
