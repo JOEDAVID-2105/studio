@@ -27,7 +27,7 @@ function SubmitButton() {
   );
 }
 
-const Dcodes = ({ onFirstUse }: { onFirstUse?: () => void }) => {
+const Dcodes = () => {
   const initialState: TailorContentState = { data: null, error: null, message: '', userInput: undefined };
   const [state, formAction, isPending] = useActionState(tailorContentAction, initialState);
   const { toast } = useToast();
@@ -36,15 +36,7 @@ const Dcodes = ({ onFirstUse }: { onFirstUse?: () => void }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
   const hasStartedChat = !!(state.userInput || isPending || state.data);
-  const onFirstUseCalled = useRef(false);
 
-  useEffect(() => {
-    if (hasStartedChat && onFirstUse && !onFirstUseCalled.current) {
-      onFirstUse();
-      onFirstUseCalled.current = true;
-    }
-  }, [hasStartedChat, onFirstUse]);
-  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

@@ -9,7 +9,6 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
-import { useToast } from '@/hooks/use-toast';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -23,8 +22,6 @@ const QuickNav = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const holdTimeout = useRef<NodeJS.Timeout | null>(null);
-  const { toast } = useToast();
-  const instructionShown = useRef(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -38,16 +35,6 @@ const QuickNav = () => {
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
-
-  useEffect(() => {
-    if (isVisible && !instructionShown.current) {
-      toast({
-        title: 'Quick Nav Tip',
-        description: 'Click to scroll up. Hold to open the navigation menu.',
-      });
-      instructionShown.current = true;
-    }
-  }, [isVisible, toast]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -90,6 +77,7 @@ const QuickNav = () => {
     <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
       <PopoverTrigger asChild>
         <Button
+          id="quick-nav-button"
           variant="secondary"
           size="icon"
           className={cn(
