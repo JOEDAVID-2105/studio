@@ -11,7 +11,7 @@ import { cmsData, experiences, skills } from './data';
 const actionSchema = z.object({
   recruiterProfile: z
     .string()
-    .min(10, 'Please provide more details about the recruiter.')
+    .min(1, 'Please enter a message.')
     .max(500, 'Profile is too long.'),
 });
 
