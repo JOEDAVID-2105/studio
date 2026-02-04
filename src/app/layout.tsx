@@ -41,7 +41,7 @@ export default function RootLayout({
           type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
         ></script>
-        <script src="/script.js" defer></script>
+        <script src="/script.js"></script>
       </head>
       <body className="font-body bg-background antialiased">
         {children}
