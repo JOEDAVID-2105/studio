@@ -11,6 +11,7 @@ import Dcodes from '@/components/sections/dcodes';
 import Faq from '@/components/sections/faq';
 import { Separator } from '@/components/ui/separator';
 import CreativeWorks from '@/components/sections/creative-works';
+import QuickNav from '@/components/quick-nav';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -47,6 +48,7 @@ export default function Home() {
             </div>
           </main>
           <Footer />
+          <QuickNav />
         </>
       )}
     </>
