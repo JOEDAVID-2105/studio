@@ -14,12 +14,12 @@ const Footer = () => {
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <Button asChild variant="outline" className="bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-            <a href="mailto:joel.david@example.com" aria-label="Email">
+            <a href="mailto:joelsofflmail@gmail.com" aria-label="Email">
               <Mail className="mr-2 h-4 w-4" /> Email Me
             </a>
           </Button>
           <Button asChild variant="outline" className="bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-            <a href="https://github.com/joeldavid" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/JOEDAVID-2105" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github className="mr-2 h-4 w-4" /> GitHub
             </a>
           </Button>
