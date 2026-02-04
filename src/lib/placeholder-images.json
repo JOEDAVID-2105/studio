@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "project-1",
+      "description": "Thumbnail for a real-time collaborative whiteboard project.",
+      "imageUrl": "https://images.unsplash.com/photo-1557264337-e8a93017fe92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZWNoJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzcwMTcxMjc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech abstract"
+    },
+    {
+      "id": "project-2",
+      "description": "Thumbnail for a 3D product visualizer project.",
+      "imageUrl": "https://images.unsplash.com/photo-1637140945341-f28ada987326?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHwzZCUyMHJlbmRlcnxlbnwwfHx8fDE3NzAxMDU4Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "3d render"
+    },
+    {
+      "id": "project-3",
+      "description": "Thumbnail for a full-stack e-commerce site.",
+      "imageUrl": "https://images.unsplash.com/photo-1674027392851-7b34f21b07ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxvbmxpbmUlMjBzdG9yZXxlbnwwfHx8fDE3NzAxNTc4NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "online store"
+    }
+  ]
 }
