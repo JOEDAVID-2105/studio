@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface LoadingScreenProps {
   onFinished: () => void;
@@ -9,14 +9,10 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
   const [visible, setVisible] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisible(false); // Start fade out
-      setTimeout(onFinished, 500); // Call onFinished after fade out
-    }, 3500); // Show loading for 3.5 seconds
-
-    return () => clearTimeout(timer);
-  }, [onFinished]);
+  const handleVideoEnd = () => {
+    setVisible(false); // Start fade out
+    setTimeout(onFinished, 500); // Call onFinished after fade out
+  };
 
   return (
     <div
@@ -24,16 +20,18 @@ const LoadingScreen = ({ onFinished }: LoadingScreenProps) => {
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-       <video
+      <video
         src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/20260204_090949_output_tiny_s3_20260204-090918.mp4"
         autoPlay
-        loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        onEnded={handleVideoEnd}
+        className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="relative z-10 text-center">
-        <p className="text-white mt-4 text-lg bg-black/50 px-4 py-2 rounded-lg">Loading portfolio...</p>
+        <p className="text-white mt-4 text-lg bg-black/50 px-4 py-2 rounded-lg">
+          Loading portfolio...
+        </p>
       </div>
     </div>
   );
