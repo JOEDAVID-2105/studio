@@ -13,31 +13,29 @@ const Tutorial = () => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
+  const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({});
+
 
   const tutorialSteps = useMemo(() => [
     {
       targetId: 'quick-nav-button',
       title: 'Quick Navigation',
       description: "Click the floating button to scroll to the top. Hold it to open a menu for jumping to different sections.",
-      position: 'top-right',
     },
      {
       targetId: 'projects',
       title: 'View My Projects',
       description: 'This section showcases some of the projects Joel has worked on. Scroll down to see more!',
-      position: 'top-center',
     },
     {
       targetId: 'dcodes',
       title: "Try D'code!",
       description: "Ask my AI assistant how Joel fits a role you have in mind. It's an example of his work!",
-      position: 'top-center',
     },
     {
       targetId: isMobile ? 'contact-me-mobile' : 'contact-me-desktop',
       title: 'Get In Touch',
       description: 'Want to work together or have a question? Click here to send a message.',
-      position: 'bottom-right',
     }
   ], [isMobile]);
 
@@ -55,47 +53,97 @@ const Tutorial = () => {
 
     const step = tutorialSteps[currentStepIndex];
     let element: HTMLElement | null = null;
-    if (step.targetId) {
-        element = document.getElementById(step.targetId);
-    }
 
-    const updateRect = () => {
+    const updatePosition = () => {
         if(step.targetId) {
             element = document.getElementById(step.targetId);
             if (element) {
-                setTargetRect(element.getBoundingClientRect());
+                const rect = element.getBoundingClientRect();
+                setTargetRect(rect);
+                
+                // New positioning logic
+                const tooltipWidth = 288; // w-72 from className
+                const tooltipHeight = 220; // Estimated height
+                const gap = 24;
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                let style: React.CSSProperties = {};
+                
+                if (isMobile) {
+                    style.left = '50%';
+                    style.transform = 'translateX(-50%)';
+                    style.maxWidth = 'calc(100vw - 32px)';
+
+                    if (rect.bottom + tooltipHeight + gap < viewportHeight) {
+                        style.top = rect.bottom + gap;
+                    } else {
+                        style.bottom = (viewportHeight - rect.top) + gap;
+                    }
+                } else {
+                    style.top = rect.top + rect.height / 2;
+                    style.transform = 'translateY(-50%)';
+                    
+                    if (rect.right + tooltipWidth + gap < viewportWidth) {
+                        style.left = rect.right + gap;
+                    } else if (rect.left - tooltipWidth - gap > 0) {
+                        style.left = rect.left - tooltipWidth - gap;
+                    } else {
+                        style.left = rect.left + rect.width / 2;
+                        style.top = rect.bottom + gap;
+                        style.transform = 'translateX(-50%)';
+                    }
+                }
+
+                // Prevent going off-screen vertically
+                if (typeof style.top === 'number' && style.top < gap) {
+                    style.top = gap;
+                }
+                if (typeof style.bottom === 'number' && style.bottom < gap) {
+                    style.bottom = gap;
+                }
+                if (typeof style.top === 'number' && style.top + tooltipHeight > viewportHeight) {
+                    style.top = viewportHeight - tooltipHeight - gap;
+                }
+
+                setTooltipStyle(style);
+            } else {
+              setTargetRect(null);
             }
         }
     }
     
     if (step.targetId === 'quick-nav-button') {
         const findButton = () => {
-            element = document.getElementById(step.targetId);
+            element = document.getElementById(step.targetId!);
             const isVisible = element && getComputedStyle(element).opacity === '1';
             if (isVisible) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                setTimeout(updateRect, 500);
+                setTimeout(updatePosition, 500);
             } else {
                 window.scrollTo({ top: window.innerHeight * 0.5, behavior: 'smooth' });
                 setTimeout(findButton, 600);
             }
         }
         findButton();
-    } else if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        setTimeout(updateRect, 500);
+    } else if (step.targetId) {
+        element = document.getElementById(step.targetId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(updatePosition, 500); // delay for scroll to finish
+        }
     } else {
         setTargetRect(null);
     }
 
-    window.addEventListener('resize', updateRect);
-    window.addEventListener('scroll', updateRect);
+    window.addEventListener('resize', updatePosition);
+    window.addEventListener('scroll', updatePosition);
     return () => {
-      window.removeEventListener('resize', updateRect);
-      window.removeEventListener('scroll', updateRect);
+      window.removeEventListener('resize', updatePosition);
+      window.removeEventListener('scroll', updatePosition);
     };
 
-  }, [showTutorial, currentStepIndex, isClient, tutorialSteps]);
+  }, [showTutorial, currentStepIndex, isClient, tutorialSteps, isMobile]);
 
   const finishTutorial = () => {
     localStorage.setItem(TUTORIAL_STORAGE_KEY, 'true');
@@ -116,28 +164,10 @@ const Tutorial = () => {
   
   const currentStep = tutorialSteps[currentStepIndex];
 
-  const tooltipStyle: React.CSSProperties = {};
-  if (currentStep.position === 'top-right') {
-    tooltipStyle.bottom = window.innerHeight - targetRect.top + 16;
-    tooltipStyle.right = window.innerWidth - targetRect.right;
-  } else if (currentStep.position === 'top-center') {
-    tooltipStyle.bottom = window.innerHeight - targetRect.top + 16;
-    tooltipStyle.left = targetRect.left + targetRect.width / 2;
-    tooltipStyle.transform = 'translateX(-50%)';
-  } else if (currentStep.position === 'bottom-right') {
-    tooltipStyle.top = targetRect.bottom + 16;
-    tooltipStyle.right = window.innerWidth - targetRect.right;
-  } else if (currentStep.position === 'bottom-center') {
-    tooltipStyle.top = targetRect.bottom + 16;
-    tooltipStyle.left = targetRect.left + targetRect.width / 2;
-    tooltipStyle.transform = 'translateX(-50%)';
-  }
-
-
   return (
     <div className="fixed inset-0 z-[1000]" aria-live="polite" aria-label="Interactive Tutorial">
         {/* Backdrop */}
-        <div className="absolute inset-0 bg-black/50" onClick={finishTutorial}/>
+        <div className="absolute inset-0" onClick={finishTutorial}/>
         
         {/* Highlight Box */}
         <div style={{
@@ -146,7 +176,7 @@ const Tutorial = () => {
             left: targetRect.left - 8,
             width: targetRect.width + 16,
             height: targetRect.height + 16,
-            boxShadow: '0 0 0 9999px rgba(0, 0, 0, 0.6)',
+            boxShadow: '0 0 0 9999px rgba(0, 0, 0, 0.75)',
             borderRadius: 'calc(var(--radius) + 4px)',
             transition: 'top 0.3s, left 0.3s, width 0.3s, height 0.3s',
             pointerEvents: 'none',
