@@ -43,7 +43,7 @@ const Header = () => {
               src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
               alt="Joel David Logo"
               fill
-              className="object-cover"
+              className="object-cover scale-[1.75]"
               unoptimized
             />
           </div>
