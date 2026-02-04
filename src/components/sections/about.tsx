@@ -30,10 +30,18 @@ const About = () => {
         </TabsList>
         <TabsContent value="intro" className="pt-6">
           <p className="text-lg text-muted-foreground leading-relaxed">
-            I’m Joel, an MSc Mathematics graduate focused on building practical
+            I’m Joel, an MSc Mathematics graduate focused on building practical,
             AI-assisted web applications and modern, product-driven web
             experiences using JavaScript and Firebase. I value clarity,
             maintainable systems, and solutions built for real users.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+            My academic background includes postgraduate-level mathematical
+            research, where I worked with abstract structures and formal
+            reasoning. This experience strengthened my ability to think
+            rigorously, break down complex problems, and design systems with
+            logical consistency—skills that directly influence how I approach
+            software development.
           </p>
         </TabsContent>
         <TabsContent value="thinking" className="pt-6">
