@@ -41,7 +41,17 @@ export default function RootLayout({
           type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
         ></script>
-        <script src="/script.js"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                emailjs.init({
+                  publicKey: "bjBJVQBZHOJTt338v",
+                });
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="font-body bg-background antialiased">
         {children}
