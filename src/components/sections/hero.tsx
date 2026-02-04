@@ -51,10 +51,16 @@ const Hero = () => {
     }
   };
 
+  const handleMouseEnter = () => {
+    // By setting hasPlayedOnce to false, we ensure the video element is rendered.
+    setHasPlayedOnce(false);
+    setIsHovering(true);
+  };
+
   return (
     <section
       className="relative flex h-screen w-full items-center justify-center overflow-hidden"
-      onMouseEnter={() => setIsHovering(true)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setIsHovering(false)}
     >
       <div className="absolute inset-0 z-0">
