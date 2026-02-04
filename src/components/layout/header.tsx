@@ -8,6 +8,9 @@ import { ContactModal } from '@/components/contact-modal';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
 
@@ -56,6 +59,12 @@ const Header = () => {
               </div>
             </DialogTrigger>
             <DialogContent className="flex h-auto max-w-[90vw] items-center justify-center border-none bg-transparent p-0 shadow-none sm:max-w-md">
+              <DialogHeader className="sr-only">
+                <DialogTitle>Joel David Logo</DialogTitle>
+                <DialogDescription>
+                  The full logo for Joel David.
+                </DialogDescription>
+              </DialogHeader>
               <Image
                 src="https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/Whisk_226d7aa74fcf94b9b3048a44a6dd1758dr.png"
                 alt="Joel David Logo"
