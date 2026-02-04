@@ -3,13 +3,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-const TOTAL_FRAMES = 50;
-const FRAME_URL_PREFIX = 'https://picsum.photos/seed/';
+const TOTAL_FRAMES = 191;
+const FRAME_URL_PREFIX =
+  'https://cxecpvkwmuxrzkqzpgwd.supabase.co/storage/v1/object/public/webp_bucket/';
 
-const generateFrameUrls = (width: number, height: number) => {
+const generateFrameUrls = () => {
   return Array.from(
     { length: TOTAL_FRAMES },
-    (_, i) => `${FRAME_URL_PREFIX}frame${i + 1}/${width}/${height}`
+    (_, i) =>
+      `${FRAME_URL_PREFIX}frame_${i.toString().padStart(3, '0')}_delay-0.042s.webp`
   );
 };
 
@@ -20,7 +22,7 @@ const Hero = () => {
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const urls = generateFrameUrls(1920, 1080);
+    const urls = generateFrameUrls();
     setFrames(urls);
 
     // Preload images
@@ -44,7 +46,9 @@ const Hero = () => {
           TOTAL_FRAMES - 1,
           Math.floor(scrollFraction * TOTAL_FRAMES)
         );
-        setFrameIndex(newFrameIndex);
+        if (isFinite(newFrameIndex)) {
+            setFrameIndex(newFrameIndex);
+        }
       }
     };
 
@@ -56,7 +60,7 @@ const Hero = () => {
     <section ref={scrollRef} className="relative h-[250vh] w-full">
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {frames.length > 0 && (
+          {frames.length > 0 && frames[frameIndex] && (
              <Image
                 ref={imageRef}
                 src={frames[frameIndex]}
