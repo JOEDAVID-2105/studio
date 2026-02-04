@@ -14,7 +14,7 @@ const Footer = () => {
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <Button asChild variant="outline" className="bg-transparent border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-            <a href="mailto:joelsofflmail@gmail.com" aria-label="Email">
+            <a href="mailto:joelsofflmail@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
               <Mail className="mr-2 h-4 w-4" /> Email Me
             </a>
           </Button>
